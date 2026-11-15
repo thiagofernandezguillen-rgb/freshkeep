@@ -1,0 +1,211 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "74e1928d3925f0144a1eacb112a6ab86",
+    "entities": [
+      {
+        "tableName": "product",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`barcode` TEXT NOT NULL, `naam` TEXT NOT NULL, `merk` TEXT, `hoeveelheid` TEXT, `fotoUrl` TEXT, `categorie` TEXT, PRIMARY KEY(`barcode`))",
+        "fields": [
+          {
+            "fieldPath": "barcode",
+            "columnName": "barcode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "naam",
+            "columnName": "naam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "merk",
+            "columnName": "merk",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "hoeveelheid",
+            "columnName": "hoeveelheid",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "fotoUrl",
+            "columnName": "fotoUrl",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "categorie",
+            "columnName": "categorie",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "barcode"
+          ]
+        }
+      },
+      {
+        "tableName": "voorraad",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `barcode` TEXT, `naam` TEXT NOT NULL, `merk` TEXT, `vervaldatum` INTEGER NOT NULL, `type` TEXT NOT NULL, `locatie` TEXT NOT NULL, `aantal` INTEGER NOT NULL, `geopend` INTEGER NOT NULL, `geopendOp` INTEGER, `notitie` TEXT, `toegevoegdOp` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "barcode",
+            "columnName": "barcode",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "naam",
+            "columnName": "naam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "merk",
+            "columnName": "merk",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "vervaldatum",
+            "columnName": "vervaldatum",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "locatie",
+            "columnName": "locatie",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aantal",
+            "columnName": "aantal",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "geopend",
+            "columnName": "geopend",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "geopendOp",
+            "columnName": "geopendOp",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "notitie",
+            "columnName": "notitie",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "toegevoegdOp",
+            "columnName": "toegevoegdOp",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_voorraad_barcode",
+            "unique": false,
+            "columnNames": [
+              "barcode"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_voorraad_barcode` ON `${TABLE_NAME}` (`barcode`)"
+          },
+          {
+            "name": "index_voorraad_vervaldatum",
+            "unique": false,
+            "columnNames": [
+              "vervaldatum"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_voorraad_vervaldatum` ON `${TABLE_NAME}` (`vervaldatum`)"
+          }
+        ]
+      },
+      {
+        "tableName": "geschiedenis",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `productnaam` TEXT NOT NULL, `resultaat` TEXT NOT NULL, `datum` INTEGER NOT NULL, `aantal` INTEGER NOT NULL DEFAULT 1)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "productnaam",
+            "columnName": "productnaam",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "resultaat",
+            "columnName": "resultaat",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "datum",
+            "columnName": "datum",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aantal",
+            "columnName": "aantal",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_geschiedenis_datum",
+            "unique": false,
+            "columnNames": [
+              "datum"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_geschiedenis_datum` ON `${TABLE_NAME}` (`datum`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '74e1928d3925f0144a1eacb112a6ab86')"
+    ]
+  }
+}

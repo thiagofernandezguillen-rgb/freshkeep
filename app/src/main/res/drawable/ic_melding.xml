@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Monochroom meldingsicoon (blaadje). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M20,3C12,3 5,6.5 5,14c0,1.6 0.4,3 1.1,4.2C7.2,14.9 9.6,12.2 13,10.5c-2.9,2.1 -5,4.9 -6.1,8.4C8.3,19.6 9.9,20 11.6,20C19,20 21,12 20,3z" />
+</vector>

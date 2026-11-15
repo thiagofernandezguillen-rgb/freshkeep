@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Database en instellingen mogen mee in de Android-back-up; tijdelijke camerafoto's niet. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <exclude domain="file" path="tmp/" />
+    </cloud-backup>
+    <device-transfer>
+        <exclude domain="file" path="tmp/" />
+    </device-transfer>
+</data-extraction-rules>

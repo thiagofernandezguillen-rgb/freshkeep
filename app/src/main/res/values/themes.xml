@@ -1,0 +1,7 @@
+<resources>
+    <!-- Basisthema; de echte styling gebeurt in Compose (ui/theme). -->
+    <style name="Theme.FreshKeep" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/achtergrond</item>
+        <item name="android:colorAccent">@color/freshkeep_groen</item>
+    </style>
+</resources>

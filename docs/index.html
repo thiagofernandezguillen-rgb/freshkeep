@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FreshKeep — never throw away forgotten food again</title>
+<meta name="description" content="FreshKeep tracks what's in your fridge, freezer and pantry and reminds you before food expires. Scan a barcode, set the date, done. Free and open source for Android.">
+<meta property="og:title" content="FreshKeep — never throw away forgotten food again">
+<meta property="og:description" content="Scan, track and get reminded before food expires. Free Android app.">
+<meta property="og:image" content="https://thiagofernandezguillen-rgb.github.io/freshkeep/img/home.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6f1;--fg:#13201a;--mute:#5d6b63;--card:#ffffff;--line:rgba(19,32,26,.09);--green:#1f8f43;--green2:#2fbf5b;--soft:#e3f1e7;--red:#d83a2f;--amber:#c97a06}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--green)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+nav.top{position:sticky;top:0;z-index:10;background:rgba(244,246,241,.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:22px;height:58px;overflow-x:auto;white-space:nowrap}
+nav.top .logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;text-decoration:none;color:var(--fg);margin-right:auto}
+nav.top .logo i{width:28px;height:28px;border-radius:8px;background:var(--green);display:inline-flex;align-items:center;justify-content:center}
+nav.top a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:500}
+nav.top a:hover{color:var(--fg)}
+nav.top a.dl{background:var(--green);color:#fff;padding:8px 16px;border-radius:999px;font-weight:700}
+header{padding:70px 0 40px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.pill{display:inline-block;background:var(--soft);color:var(--green);font-weight:700;font-size:13px;padding:6px 12px;border-radius:999px;letter-spacing:.3px}
+h1{font-size:clamp(42px,6.4vw,76px);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin-top:18px}
+h1 span{color:var(--green)}
+.sub{color:var(--mute);font-size:clamp(17px,2vw,21px);margin-top:18px;max-width:560px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;text-decoration:none;font-size:17px}
+.btn.primary{background:var(--green);color:#fff;box-shadow:0 10px 30px rgba(31,143,67,.28)}
+.btn.ghost{background:var(--card);color:var(--fg);border:1px solid var(--line)}
+.note{color:var(--mute);font-size:14px;margin-top:14px}
+.phone{position:relative;width:min(330px,80vw);margin:0 auto;border-radius:44px;background:#0d1411;padding:12px;box-shadow:0 40px 90px rgba(19,32,26,.28)}
+.phone img{display:block;width:100%;height:auto;border-radius:33px}
+.phone.tilt{transform:rotate(-3deg)}
+section{padding:70px 0}
+h2{font-size:clamp(30px,4.6vw,48px);font-weight:800;letter-spacing:-.035em;text-align:center}
+.lead{color:var(--mute);text-align:center;max-width:640px;margin:12px auto 0;font-size:18px}
+.steps3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px}
+.step b{display:flex;width:40px;height:40px;border-radius:12px;background:var(--soft);color:var(--green);align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+.step h3{font-size:19px;margin-bottom:6px}
+.step p{color:var(--mute);font-size:15px}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px}
+.feat h3{font-size:18px;margin-bottom:6px}
+.feat p{color:var(--mute);font-size:15px}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:13px;font-weight:700;padding:4px 10px;border-radius:999px}
+.t-red{background:#fde4e2;color:var(--red)}.t-amb{background:#fdf0d9;color:var(--amber)}.t-grn{background:var(--soft);color:var(--green)}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px;align-items:start}
+.shots figure{text-align:center}
+.shots figcaption{color:var(--mute);font-size:15px;margin-top:16px;font-weight:600}
+ol.install{max-width:720px;margin:36px auto 0;counter-reset:s;list-style:none}
+ol.install li{counter-increment:s;position:relative;padding:18px 0 18px 58px;border-bottom:1px solid var(--line);font-size:17px}
+ol.install li::before{content:counter(s);position:absolute;left:0;top:16px;width:38px;height:38px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.box{max-width:720px;margin:22px auto 0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 20px;color:var(--mute);font-size:15px}
+.privacy{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+details{max-width:760px;margin:12px auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 20px}
+details summary{cursor:pointer;font-weight:700;font-size:17px}
+details p{color:var(--mute);margin-top:8px}
+footer{border-top:1px solid var(--line);padding:34px 0 48px;color:var(--mute);font-size:14px;text-align:center}
+footer a{color:var(--mute)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.steps3,.feats,.shots,.privacy{grid-template-columns:1fr}.phone.tilt{transform:none}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap">
+  <a class="logo" href="./"><i><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M5 10h14M8.5 6v1.5M8.5 13v3"/></svg></i>FreshKeep</a>
+  <a href="#how">How it works</a>
+  <a href="#features">Features</a>
+  <a href="#install">Install</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://github.com/thiagofernandezguillen-rgb/freshkeep">GitHub</a>
+  <a class="dl" href="https://github.com/thiagofernandezguillen-rgb/freshkeep/releases/latest/download/FreshKeep.apk">Download</a>
+</div></nav>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <span class="pill">FREE · OPEN SOURCE · ANDROID</span>
+      <h1>Never throw away <span>forgotten food</span> again.</h1>
+      <p class="sub">FreshKeep keeps track of what's in your fridge, freezer and pantry — and reminds you before it expires. Scan a barcode, set the date, done.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://github.com/thiagofernandezguillen-rgb/freshkeep/releases/latest/download/FreshKeep.apk">⬇ Download for Android</a>
+        <a class="btn ghost" href="#install">How to install</a>
+      </div>
+      <p class="note">Android 8.0 or newer · No account · No ads · Interface in Dutch</p>
+    </div>
+    <div class="phone tilt"><img src="img/home.png" alt="FreshKeep home screen listing products with expiry labels" width="1080" height="2400"></div>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <h2>Three steps. That's it.</h2>
+    <div class="steps3">
+      <div class="step"><b>1</b><h3>Scan</h3><p>Point your camera at the barcode. FreshKeep looks up the product name for you.</p></div>
+      <div class="step"><b>2</b><h3>Set the date</h3><p>Pick the expiry date and where it's stored: fridge, freezer or pantry.</p></div>
+      <div class="step"><b>3</b><h3>Get reminded</h3><p>One short overview per day of what to eat first — before it's too late.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2>Everything you need in the kitchen.</h2>
+    <p class="lead">Simple enough to use every day. Smart enough to actually save food.</p>
+    <div class="feats">
+      <div class="feat"><h3>Expiry at a glance</h3><p>Clear colour labels show what needs attention.</p><div class="tags"><span class="tag t-red">expired</span><span class="tag t-red">expires today</span><span class="tag t-amb">2 days left</span><span class="tag t-grn">9 days left</span></div></div>
+      <div class="feat"><h3>Fridge, freezer &amp; pantry</h3><p>Filter by location, search everything, and see what's coming up soon.</p></div>
+      <div class="feat"><h3>Opened products</h3><p>Mark items as opened and keep track of when — milk, cheese, sauces.</p></div>
+      <div class="feat"><h3>Daily reminder</h3><p>One overview at a time you choose, plus a morning alert for what expires today.</p></div>
+      <div class="feat"><h3>Statistics</h3><p>See how much you saved versus threw away, per month, and what you waste most.</p></div>
+      <div class="feat"><h3>Backup &amp; dark mode</h3><p>Export or import everything as a file. Light, dark or automatic theme.</p></div>
+    </div>
+    <div class="shots">
+      <figure><div class="phone"><img src="img/home.png" alt="Product list with expiry labels" loading="lazy" width="1080" height="2400"></div><figcaption>Everything in your kitchen</figcaption></figure>
+      <figure><div class="phone"><img src="img/stats.png" alt="Statistics: 79% saved" loading="lazy" width="1080" height="2400"></div><figcaption>See how much you save</figcaption></figure>
+      <figure><div class="phone"><img src="img/settings.png" alt="Settings with daily reminder" loading="lazy" width="1080" height="2400"></div><figcaption>Reminders your way</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Install in one minute.</h2>
+    <p class="lead">FreshKeep isn't in the Play Store (yet). Installing the file directly is safe and takes a minute.</p>
+    <ol class="install">
+      <li>On your Android phone, tap <a href="https://github.com/thiagofernandezguillen-rgb/freshkeep/releases/latest/download/FreshKeep.apk"><b>Download FreshKeep.apk</b></a>.</li>
+      <li>Open the downloaded file. If Android asks, allow your browser to <b>install unknown apps</b> (Settings → Apps → your browser → Install unknown apps).</li>
+      <li>Tap <b>Install</b>, then <b>Open</b>.</li>
+      <li>Allow <b>notifications</b> (for your daily reminder) and the <b>camera</b> (for scanning). Done! 🎉</li>
+    </ol>
+    <div class="box"><b>Updating:</b> download and install the newest FreshKeep.apk the same way — your products and statistics are kept. <b>Uninstalling:</b> long-press the FreshKeep icon → Uninstall.</div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Your data stays yours.</h2>
+    <div class="privacy">
+      <div class="feat"><h3>📱 On your phone</h3><p>Your products, dates and statistics are stored only on your device. No account needed.</p></div>
+      <div class="feat"><h3>🔎 Only the barcode</h3><p>When you scan, just the barcode is sent to Open Food Facts to find the product name.</p></div>
+      <div class="feat"><h3>🚫 No tracking</h3><p>No ads, no analytics, no trackers. Free and open source.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>FAQ</h2>
+    <details><summary>Is FreshKeep free?</summary><p>Yes, completely free and open source (MIT license). No ads, no in-app purchases.</p></details>
+    <details><summary>Which phones are supported?</summary><p>Android phones with Android 8.0 or newer. There is no iPhone version.</p></details>
+    <details><summary>What if a product has no barcode?</summary><p>Add it by hand — type the name, pick the date and the location.</p></details>
+    <details><summary>Is it in English?</summary><p>The app interface is currently in Dutch. This website and the documentation are in English.</p></details>
+    <details><summary>What about the AI features?</summary><p>FreshKeep can optionally read expiry dates and recognise products from a photo. That needs your own small backend with a Gemini API key (instructions on GitHub). The downloadable app works without it — you simply pick dates yourself.</p></details>
+    <details><summary>Will I lose my data when I update?</summary><p>No. Install the new version over the old one and everything is kept. You can also export a backup in Settings.</p></details>
+  </div>
+</section>
+
+<footer><div class="wrap">FreshKeep · <a href="https://github.com/thiagofernandezguillen-rgb/freshkeep">GitHub</a> · <a href="https://github.com/thiagofernandezguillen-rgb/freshkeep/blob/main/LICENSE">MIT License</a> · Product data from <a href="https://world.openfoodfacts.org">Open Food Facts</a> (ODbL)</div></footer>
+</body>
+</html>

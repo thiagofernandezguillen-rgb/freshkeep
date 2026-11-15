@@ -1,0 +1,24 @@
+name = "freshkeep-backend"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+# Logs bevatten geen foto's of tokens; alleen foutcodes.
+[observability]
+enabled = true
+
+[vars]
+# Model met beeldherkenning. Pas aan naar een vaste versie als je dat wilt (zie README).
+GEMINI_MODEL = "gemini-flash-latest"
+DAGLIMIET = "100"
+
+[[durable_objects.bindings]]
+name = "DAGLIMIET_DO"
+class_name = "Daglimiet"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Daglimiet"]
+
+# Secrets (NOOIT hier invullen, gebruik `npx wrangler secret put`):
+#   GEMINI_API_KEY  - sleutel van Google AI Studio
+#   APP_TOKEN       - gedeeld geheim dat ook in local.properties van de app staat
